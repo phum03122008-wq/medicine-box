@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#167ac6">
+  <meta name="description" content="MEDICINE BOX ระบบลงทะเบียนรับยาของวิทยาลัย">
+  <title>MEDICINE BOX | ระบบลงทะเบียนรับยา</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ส่วนหัวเว็บไซต์ -->
+  <header class="header">
+    <div class="logo">✚ MEDICINE BOX</div>
+    <p>ระบบลงทะเบียนรับยาของวิทยาลัย</p>
+    <button type="button" id="signOutButton" class="sign-out-button" hidden>
+      ออกจากระบบ
+    </button>
+  </header>
+
+  <main class="container">
+
+    <!-- =====================================
+         หน้าสมัครสมาชิก
+    ====================================== -->
+
+    <section id="registrationView" class="form-card registration-card">
+
+      <div class="icon">🪪</div>
+
+      <h1>สมัครใช้งาน</h1>
+
+      <p class="subtitle">
+        สมัครด้วยชื่อและรหัสประจำตัวนักศึกษา
+        เพื่อเริ่มลงทะเบียนขอรับยา
+      </p>
+
+      <form id="registrationForm">
+
+        <div class="form-group">
+          <label for="registrationName">ชื่อ-นามสกุล</label>
+          <input
+            type="text"
+            id="registrationName"
+            placeholder="กรอกชื่อ-นามสกุล"
+            maxlength="100"
+            autocomplete="name"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="registrationStudentId">รหัสประจำตัวนักศึกษา</label>
+          <input
+            type="text"
+            id="registrationStudentId"
+            placeholder="กรอกรหัสประจำตัวนักศึกษา"
+            maxlength="15"
+            inputmode="numeric"
+            pattern="[0-9]{5,15}"
+            required
+          >
+        </div>
+
+        <button type="submit" id="registrationSubmitButton">
+          สมัครและเข้าสู่ระบบ
+        </button>
+
+        <button type="button" id="loginButton" class="secondary-button">
+          เป็นสมาชิกแล้ว เข้าสู่ระบบ
+        </button>
+
+      </form>
+
+      <div
+        id="registrationMessage"
+        class="message"
+        role="status"
+        aria-live="polite"
+      ></div>
+
+      <div class="notice">
+        ใช้ชื่อและรหัสที่ถูกต้องของตนเองเท่านั้น
+      </div>
+
+    </section>
+
+    <!-- =====================================
+         หน้าลงทะเบียนรับยา
+    ====================================== -->
+
+    <section id="formView" class="form-card" hidden>
+
+      <div class="icon">💊</div>
+
+      <h1>ลงทะเบียนรับยา</h1>
+
+      <p class="subtitle">
+        กรุณากรอกข้อมูลเพื่อส่งคำขอรับยา
+        เจ้าหน้าที่จะตรวจสอบก่อนดำเนินการ
+      </p>
+
+      <form id="medicineForm">
+
+        <!-- รหัสนักศึกษา -->
+        <div class="form-group">
+          <label for="studentId">
+            1. รหัสประจำตัวนักศึกษา
+          </label>
+
+          <input
+            type="text"
+            id="studentId"
+            placeholder="กรอกรหัสประจำตัวนักศึกษา"
+            maxlength="15"
+            inputmode="numeric"
+            pattern="[0-9]{5,15}"
+            readonly
+            required
+          >
+        </div>
+
+        <!-- ชื่อ -->
+        <div class="form-group">
+          <label for="name">
+            2. ชื่อ-นามสกุล
+          </label>
+
+          <input
+            type="text"
+            id="name"
+            placeholder="กรอกชื่อ-นามสกุล"
+            maxlength="100"
+            autocomplete="name"
+            readonly
+            required
+          >
+        </div>
+
+        <!-- ชั้น / ห้อง -->
+        <div class="form-group">
+          <label for="room">
+            3. ชั้น / ห้อง
+          </label>
+
+          <input
+            type="text"
+            id="room"
+            placeholder="เช่น ปวช.3/1"
+            maxlength="50"
+            required
+          >
+        </div>
+
+        <!-- เลือกยา -->
+        <div class="form-group">
+          <label for="medicine">
+            4. ชนิดยา
+          </label>
+
+          <select id="medicine" required>
+            <option value="">-- เลือกชนิดยา --</option>
+            <option value="paracetamol">พาราเซตามอล</option>
+            <option value="allergy">ยาแก้แพ้</option>
+            <option value="cough">ยาแก้ไอ</option>
+          </select>
+        </div>
+
+        <!-- ข้อมูลผลิตภัณฑ์ -->
+        <section
+          id="medicineInfo"
+          class="medicine-info"
+          hidden
+        >
+
+          <h3 id="medicineInfoTitle">
+            ข้อมูลผลิตภัณฑ์
+          </h3>
+
+          <p id="medicineInfoDescription"></p>
+
+          <div class="status-label">
+            <span class="status-dot"></span>
+
+            <span id="medicineInfoStatus">
+              ข้อมูลรอตรวจสอบ
+            </span>
+          </div>
+
+          <div
+            id="medicineInfoDetails"
+            class="medicine-details"
+          ></div>
+
+          <p class="medicine-warning">
+            ข้อมูลผลิตภัณฑ์และฉลากยังไม่ได้รับการยืนยัน
+            เว็บไซต์นี้เป็นระบบต้นแบบ ไม่ใช่คำแนะนำในการใช้ยา
+          </p>
+
+        </section>
+
+        <!-- อาการ -->
+        <div class="form-group">
+          <label for="symptom">
+            5. อาการเบื้องต้น
+          </label>
+
+          <textarea
+            id="symptom"
+            rows="4"
+            maxlength="500"
+            placeholder="อธิบายอาการเบื้องต้นของคุณ..."
+            required
+          ></textarea>
+        </div>
+
+        <!-- ปุ่มส่งข้อมูล -->
+        <button type="submit" id="submitBtn">
+          ส่งคำขอให้เจ้าหน้าที่ตรวจสอบ
+        </button>
+
+      </form>
+
+      <!-- ข้อความตอบกลับ -->
+      <div
+        id="message"
+        class="message"
+        role="status"
+        aria-live="polite"
+      ></div>
+
+      <!-- หมายเหตุ -->
+      <div class="notice">
+        หมายเหตุ: ระบบบันทึกคำขอเพื่อรอการตรวจสอบ
+        ไม่ใช่ระบบจ่ายยาอัตโนมัติ
+      </div>
+
+    </section>
+
+
+    <!-- =====================================
+         หน้าสถานะคำขอ
+    ====================================== -->
+
+    <section
+      id="successView"
+      class="success-card"
+      hidden
+    >
+
+      <div class="success-icon">
+        <span>✓</span>
+      </div>
+
+      <h1 class="success-title">
+        ส่งคำขอเรียบร้อยแล้ว
+      </h1>
+
+      <p class="success-subtitle">
+        ระบบได้รับคำขอของคุณแล้ว
+      </p>
+
+      <!-- รหัสคำขอ -->
+      <div class="request-id-box">
+
+        <span>รหัสรายการของคุณ</span>
+
+        <strong id="successRequestId">
+          MB-XXXXXXXX
+        </strong>
+
+      </div>
+
+
+      <!-- รายละเอียดนักศึกษา -->
+      <div class="summary-box">
+
+        <h2>รายละเอียดข้อมูล</h2>
+
+        <div class="summary-row">
+          <span>ชื่อ-นามสกุล</span>
+          <strong id="successName">-</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>ชั้น / ห้อง</span>
+          <strong id="successRoom">-</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>ชนิดยา</span>
+          <strong id="successMedicine">-</strong>
+        </div>
+
+        <div class="summary-row summary-symptom">
+          <span>อาการเบื้องต้น</span>
+          <strong id="successSymptom">-</strong>
+        </div>
+
+      </div>
+
+
+      <div class="status-box">
+        <h2>สถานะคำขอ</h2>
+        <p id="successServerMessage" class="success-server-message">-</p>
+
+        <!-- สิทธิ์คงเหลือ -->
+        <div class="summary-row">
+          <span>จำนวนคำขอคงเหลือวันนี้</span>
+          <strong id="successRemaining">- รายการ</strong>
+        </div>
+
+      </div>
+
+
+      <p class="well-wish">
+        ขอบคุณที่ใช้บริการ MEDICINE BOX 💙
+      </p>
+
+
+      <!-- ปุ่มกลับ -->
+      <button
+        type="button"
+        id="backButton"
+        class="back-button"
+      >
+        กลับหน้าหลัก
+      </button>
+
+
+      <p class="success-footer">
+        MEDICINE BOX | ระบบต้นแบบตู้ยาอัตโนมัติ
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <!-- ท้ายเว็บไซต์ -->
+  <footer>
+
+    MEDICINE BOX © 2026
+
+    <p>ระบบต้นแบบตู้ยาอัตโนมัติ</p>
+
+  </footer>
+
+
+  <!-- เชื่อมต่อ JavaScript -->
+  <script src="app.js"></script>
+
+</body>
+</html>

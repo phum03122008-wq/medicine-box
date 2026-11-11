@@ -1,0 +1,545 @@
+
+/* ===== ตั้งค่าพื้นฐาน ===== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #eef6ff;
+  color: #26364a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== ส่วนหัวเว็บไซต์ ===== */
+
+.header {
+  background: #167ac6;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.header p {
+  font-size: 14px;
+}
+
+.sign-out-button {
+  width: auto;
+  margin: 14px 0 0;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 8px;
+  background: transparent;
+  font-size: 13px;
+}
+
+.sign-out-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== กล่องหลัก ===== */
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  margin: 35px auto;
+  padding: 15px;
+  flex: 1;
+}
+
+.form-card,
+.success-card {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== หัวข้อ ===== */
+
+.icon {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+h1 {
+  text-align: center;
+  margin: 10px 0;
+  color: #167ac6;
+  font-size: 27px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #718096;
+  margin-bottom: 25px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ===== แบบฟอร์ม ===== */
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ccd8e5;
+  border-radius: 9px;
+  font-size: 16px;
+  font-family: inherit;
+  background: white;
+  color: #26364a;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #80bfff;
+  border-color: #167ac6;
+}
+
+input[readonly] {
+  background: #f1f5f9;
+  color: #526170;
+  cursor: not-allowed;
+}
+
+/* ===== กล่องข้อมูลยา ===== */
+
+.medicine-info {
+  margin: 5px 0 20px;
+  padding: 18px;
+  background: #f0f8ff;
+  border: 1px solid #b9dcf7;
+  border-left: 5px solid #167ac6;
+  border-radius: 10px;
+  line-height: 1.7;
+}
+
+.medicine-info h3 {
+  color: #167ac6;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.medicine-info p {
+  font-size: 14px;
+  color: #40546a;
+  margin-top: 5px;
+}
+
+.status-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: #a66a00;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #e6a23c;
+  flex-shrink: 0;
+}
+
+.medicine-info .medicine-warning {
+  color: #8b641d;
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+/* ===== รายละเอียดข้อมูลยา ===== */
+
+.medicine-details {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.medicine-detail-row {
+  padding: 10px 12px;
+  background: #ffffff;
+  border: 1px solid #dceaf7;
+  border-radius: 8px;
+  line-height: 1.7;
+}
+
+.medicine-detail-row strong {
+  display: block;
+  color: #167ac6;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.medicine-detail-row p {
+  color: #40546a;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* ===== ปุ่ม ===== */
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 8px;
+  background: #167ac6;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background: #105f9c;
+}
+
+button:disabled {
+  background: #8daec9;
+  cursor: not-allowed;
+}
+
+.secondary-button {
+  margin-top: 12px;
+  border: 1px solid #167ac6;
+  background: white;
+  color: #167ac6;
+}
+
+.secondary-button:hover {
+  background: #eff8ff;
+}
+
+/* ===== ข้อความตอบกลับ ===== */
+
+.message {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+  line-height: 1.7;
+}
+
+.message:empty {
+  display: none;
+}
+
+.message.success {
+  color: #16834b;
+}
+
+.message.error {
+  color: #c0392b;
+}
+
+.message.warning {
+  color: #a66a00;
+}
+
+/* ===== หมายเหตุ ===== */
+
+.notice {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #7b8794;
+  text-align: center;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   หน้าสำเร็จ
+========================================== */
+
+.success-card {
+  text-align: center;
+  animation: appear 0.35s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-icon {
+  width: 92px;
+  height: 92px;
+  margin: 5px auto 18px;
+  border-radius: 50%;
+  background: #e0f6e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #16834b;
+}
+
+.success-icon span {
+  font-size: 58px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.success-title {
+  color: #16834b;
+  font-size: 27px;
+  margin-bottom: 8px;
+}
+
+.success-subtitle {
+  color: #718096;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+
+/* ===== รหัสคำขอ ===== */
+
+.request-id-box {
+  background: #eff8ff;
+  border: 1px solid #c9e4fa;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.request-id-box span {
+  display: block;
+  color: #64748b;
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+
+.request-id-box strong {
+  color: #167ac6;
+  font-size: 22px;
+  letter-spacing: 1px;
+  overflow-wrap: anywhere;
+}
+
+/* ===== กล่องรายละเอียด ===== */
+
+.summary-box,
+.status-box {
+  text-align: left;
+  border: 1px solid #e1e8f0;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+.summary-box h2,
+.status-box h2 {
+  font-size: 17px;
+  color: #26364a;
+  margin-bottom: 14px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #edf1f5;
+  font-size: 14px;
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+.summary-row span {
+  color: #718096;
+  flex-shrink: 0;
+}
+
+.summary-row strong {
+  color: #26364a;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.summary-symptom {
+  flex-direction: column;
+  gap: 5px;
+}
+
+.summary-symptom strong {
+  text-align: left;
+  font-weight: normal;
+  line-height: 1.7;
+}
+
+/* ===== สถานะระบบ ===== */
+
+.status-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.status-item:last-child {
+  border-bottom: none;
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.status-indicator.completed {
+  background: #16834b;
+}
+
+.status-indicator.waiting {
+  background: #e6a23c;
+}
+
+.status-indicator.pending {
+  background: #94a3b8;
+}
+
+.status-item strong {
+  display: block;
+  color: #26364a;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.status-item p {
+  color: #718096;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ===== คำอวยพรและปุ่มกลับ ===== */
+
+.well-wish {
+  color: #16834b;
+  font-weight: bold;
+  margin: 22px 0 15px;
+  line-height: 1.7;
+}
+
+.back-button {
+  background: #167ac6;
+  margin-top: 5px;
+}
+
+.back-button:hover {
+  background: #105f9c;
+}
+
+.success-footer {
+  color: #94a3b8;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+/* ===== ท้ายเว็บไซต์ ===== */
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #718096;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* ===== รองรับโทรศัพท์ ===== */
+
+@media (max-width: 480px) {
+  .header {
+    padding: 20px 10px;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .container {
+    margin: 15px auto;
+    padding: 12px;
+  }
+
+  .form-card,
+  .success-card {
+    padding: 22px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .success-icon {
+    width: 82px;
+    height: 82px;
+  }
+
+  .success-icon span {
+    font-size: 50px;
+  }
+
+  .success-title {
+    font-size: 24px;
+  }
+
+  .request-id-box strong {
+    font-size: 19px;
+  }
+
+  .summary-box,
+  .status-box {
+    padding: 14px;
+  }
+}
